@@ -15,10 +15,10 @@ namespace MoodAnalyserMSTest
             //Arrange
             string expected = "SAD";
             string message = "I am in Sad Mood";
-            MoodAnalyser mood = new();
+            MoodAnalyser mood = new(message);
 
             //Act
-            string actual = mood.AnalyseMood(message);
+            string actual = mood.AnalyseMood();
 
             //Assert
             Assert.AreEqual(expected, actual);
