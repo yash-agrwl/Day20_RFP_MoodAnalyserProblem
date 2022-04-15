@@ -2,7 +2,7 @@
 
 namespace MoodAnalyserProblem
 {
-    internal class Program
+    public class Program
     {
         static void Main()
         {
@@ -18,10 +18,29 @@ namespace MoodAnalyserProblem
             Console.WriteLine("\nGiven message is: " + message);
             Console.WriteLine("The returned value is: " + mood2.AnalyseMood());
 
-            message = null;
-            MoodAnalyser mood3 = new(message);
-            Console.WriteLine("\nGiven message is null");
-            Console.WriteLine("The returned value is: " + mood3.AnalyseMood());
+            try
+            {
+                message = null;
+                MoodAnalyser mood3 = new(message);
+                Console.WriteLine("\nGiven message is null");
+                Console.WriteLine("The returned value is: " + mood3.AnalyseMood());
+            }
+            catch (MoodAnalyserCustomException ex)
+            {
+                Console.WriteLine("Custom Exception: " + ex.Message);
+            }
+
+            try
+            {
+                message = "";
+                MoodAnalyser mood3 = new(message);
+                Console.WriteLine("\nGiven message is empty");
+                Console.WriteLine("The returned value is: " + mood3.AnalyseMood());
+            }
+            catch (MoodAnalyserCustomException ex)
+            {
+                Console.WriteLine("Custom Exception: " + ex.Message);
+            }
         }
     }
 }

@@ -4,7 +4,7 @@ using MoodAnalyserProblem;
 namespace MoodAnalyserMSTest
 {
     [TestClass]
-    public class TestMood
+    public class TestMoodAnalyser
     {
         /// <summary>
         /// TC 1.1: Given "I am in Sad Mood" message should return SAD.
