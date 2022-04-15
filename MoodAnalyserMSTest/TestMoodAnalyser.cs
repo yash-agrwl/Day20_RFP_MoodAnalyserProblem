@@ -59,5 +59,23 @@ namespace MoodAnalyserMSTest
             //Assert
             Assert.AreEqual(expected, actual);
         }
+
+        /// <summary>
+        /// TC 3.1: Given NULL Mood Should Throw MoodAnalysisException Indicating Null Mood.
+        /// </summary>
+        [TestMethod]
+        public void Given_NULL_Mood_Should_Throw_MoodAnalysisException()
+        {
+            try
+            {
+                string message = null;
+                MoodAnalyser mood = new(message);
+                string actual = mood.AnalyseMood();
+            }
+            catch (MoodAnalyserCustomException e)
+            {
+                Assert.AreEqual("Mood should not be null", e.Message);
+            }
+        }
     }
 }
