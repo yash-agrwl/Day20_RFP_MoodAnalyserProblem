@@ -178,7 +178,8 @@ namespace MoodAnalyserMSTest
         [TestMethod]
         [DataRow("HAPPY", "Message")]
         [DataRow("HAPPY", "ImproperField")]
-        public void Given_HappyMessage_ShouldSetFieldUsingReflection_AndReturnHappy(string message, string fieldName)
+        [DataRow(null, "Message")]
+        public void GivenHappyMessage_ShouldSetFieldUsingReflection_AndReturnHappy(string message, string fieldName)
         {
             string expected = message;
             try
@@ -188,7 +189,10 @@ namespace MoodAnalyserMSTest
             }
             catch (MoodAnalyserCustomException e)
             {
-                Assert.AreEqual("Field is not Found", e.Message);
+                if (e.Message == "Field is not Found")
+                    Assert.AreEqual("Field is not Found", e.Message);
+                else if (e.Message == "Message should not be null")
+                    Assert.AreEqual("Message should not be null", e.Message);
             }
         }
     }

@@ -118,10 +118,10 @@ namespace MoodAnalyserProblem
                 MoodAnalyser obj = (MoodAnalyser)MoodAnalyserReflector.CreateMoodAnalyserUsingDefaultConstructor("MoodAnalyserProblem.MoodAnalyser", "MoodAnalyser");
                 Type type = typeof(MoodAnalyser);
                 FieldInfo field = type.GetField(fieldName, BindingFlags.Public | BindingFlags.Instance);
+
                 if (message == null)
-                {
                     throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.NULL_MESSAGE, "Message should not be null");
-                }
+
                 field.SetValue(obj, message);
                 return obj.Message;
             }
