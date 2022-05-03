@@ -177,11 +177,19 @@ namespace MoodAnalyserMSTest
         /// <param name="fieldName"></param>
         [TestMethod]
         [DataRow("HAPPY", "Message")]
+        [DataRow("HAPPY", "ImproperField")]
         public void Given_HappyMessage_ShouldSetFieldUsingReflection_AndReturnHappy(string message, string fieldName)
         {
             string expected = message;
-            string actual = MoodAnalyserReflector.SetField(message, fieldName);
-            Assert.AreEqual(expected, actual);
+            try
+            {
+                string actual = MoodAnalyserReflector.SetField(message, fieldName);
+                Assert.AreEqual(expected, actual);
+            }
+            catch (MoodAnalyserCustomException e)
+            {
+                Assert.AreEqual("Field is not Found", e.Message);
+            }
         }
     }
 }
