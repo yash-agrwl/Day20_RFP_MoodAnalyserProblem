@@ -72,5 +72,36 @@ namespace MoodAnalyserProblem
                 throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.NO_SUCH_CLASS, "Class Not Found");
             }
         }
+
+        /// <summary>
+        /// UC6: Use Reflection to invoke AnalyseMood Method.
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="methodName"></param>
+        /// <returns></returns>
+        /// <exception cref="MoodAnalyserCustomException"></exception>
+        public static string InvokeAnalyseMood(string message, string methodName)
+        {
+            try
+            {
+                Type type = Type.GetType("MoodAnalyserProblem.MoodAnalyser");
+                object moodAnalyserObject = MoodAnalyserFactory.CreateMoodAnalyserUsingParameterizedConstructor("MoodAnalyserProblem.MoodAnalyser", "MoodAnalyser", message);
+                MethodInfo analyseMoodInfo = type.GetMethod(methodName);
+                try
+                {
+                    object mood = analyseMoodInfo.Invoke(moodAnalyserObject, null);
+                    return mood.ToString();
+                }
+                catch (MoodAnalyserCustomException e)
+                {
+                    throw e;
+                }
+
+            }
+            catch (NullReferenceException)
+            {
+                throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.NO_SUCH_METHOD, "Method is Not Found");
+            }
+        }
     }
 }
