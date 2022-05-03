@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MoodAnalyserProblem
 {
-    public class MoodAnalyserFactory
+    public class MoodAnalyserReflector
     {
         /// <summary>
         /// UC 4: Create Object of MoodAnalyser class with Default Constructor using Reflection.
@@ -85,7 +85,7 @@ namespace MoodAnalyserProblem
             try
             {
                 Type type = Type.GetType("MoodAnalyserProblem.MoodAnalyser");
-                object moodAnalyserObject = MoodAnalyserFactory.CreateMoodAnalyserUsingParameterizedConstructor("MoodAnalyserProblem.MoodAnalyser", "MoodAnalyser", message);
+                object moodAnalyserObject = MoodAnalyserReflector.CreateMoodAnalyserUsingParameterizedConstructor("MoodAnalyserProblem.MoodAnalyser", "MoodAnalyser", message);
                 MethodInfo analyseMoodInfo = type.GetMethod(methodName);
                 try
                 {

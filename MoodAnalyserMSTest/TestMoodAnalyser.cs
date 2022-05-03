@@ -108,7 +108,7 @@ namespace MoodAnalyserMSTest
             try
             {
                 object expected = new MoodAnalyser();
-                object obj = MoodAnalyserFactory.CreateMoodAnalyserUsingDefaultConstructor(className, constructorName);
+                object obj = MoodAnalyserReflector.CreateMoodAnalyserUsingDefaultConstructor(className, constructorName);
                 expected.Equals(obj);
                 //bool flag = expected == obj; // Alternate Statement.
             }
@@ -133,7 +133,7 @@ namespace MoodAnalyserMSTest
             object expected = new MoodAnalyser(message);
             try
             {
-                object obj = MoodAnalyserFactory.CreateMoodAnalyserUsingParameterizedConstructor(className, constructorName, message);
+                object obj = MoodAnalyserReflector.CreateMoodAnalyserUsingParameterizedConstructor(className, constructorName, message);
                 expected.Equals(obj);
             }
             catch (MoodAnalyserCustomException e)
