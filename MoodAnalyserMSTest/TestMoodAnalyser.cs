@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoodAnalyserProblem;
+using System.Reflection;
 
 namespace MoodAnalyserMSTest
 {
@@ -142,6 +143,30 @@ namespace MoodAnalyserMSTest
                     Assert.AreEqual("Constructor is Not Found", e.Message);
                 else if (e.Message == "Class Not Found")
                     Assert.AreEqual("Class Not Found", e.Message);
+            }
+        }
+
+        /// <summary>
+        /// TC 6.1 & 6.2: Given Happy Message Using Reflection Should Return Happy.
+        /// </summary>
+        [TestMethod]
+        [DataRow("Happy", "AnalyseMood")]
+        [DataRow(null, "AnalyseMood")]
+        [DataRow("Happy", "ImproperMethod")]
+        public void GivenHappyMessageUsingReflectorShouldReturnHappy(string message, string methodName)
+        {
+            string expected = "HAPPY";
+            try
+            {
+                string actual = MoodAnalyserReflector.InvokeAnalyseMood(message, methodName);
+                Assert.AreEqual(expected, actual);
+            }
+            catch (MoodAnalyserCustomException e)
+            {
+                if(e.Message == "Method is Not Found")
+                    Assert.AreEqual("Method is Not Found", e.Message);
+                else if (e.Message == "Improper Message entered")
+                    Assert.AreEqual("Improper Message entered", e.Message);
             }
         }
     }

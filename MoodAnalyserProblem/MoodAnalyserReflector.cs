@@ -92,9 +92,9 @@ namespace MoodAnalyserProblem
                     object mood = analyseMoodInfo.Invoke(moodAnalyserObject, null);
                     return mood.ToString();
                 }
-                catch (MoodAnalyserCustomException e)
+                catch (TargetInvocationException)
                 {
-                    throw e;
+                    throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.IMPROPER_MESSAGE, "Improper Message entered");
                 }
 
             }
