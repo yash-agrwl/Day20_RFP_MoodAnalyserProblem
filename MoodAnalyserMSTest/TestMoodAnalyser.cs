@@ -169,5 +169,19 @@ namespace MoodAnalyserMSTest
                     Assert.AreEqual("Improper Message entered", e.Message);
             }
         }
+
+        /// <summary>
+        /// TC7.1: Given Happy Message use Reflection to Set the Field value and return Happy.
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="fieldName"></param>
+        [TestMethod]
+        [DataRow("HAPPY", "Message")]
+        public void Given_HappyMessage_ShouldSetFieldUsingReflection_AndReturnHappy(string message, string fieldName)
+        {
+            string expected = message;
+            string actual = MoodAnalyserReflector.SetField(message, fieldName);
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
