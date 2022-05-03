@@ -11,6 +11,11 @@ namespace MoodAnalyserProblem
 
         private string Message;
 
+        public MoodAnalyser()
+        {
+
+        }
+
         public MoodAnalyser(string message)
         {
             this.Message = message;
