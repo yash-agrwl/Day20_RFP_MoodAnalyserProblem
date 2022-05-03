@@ -103,5 +103,32 @@ namespace MoodAnalyserProblem
                 throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.NO_SUCH_METHOD, "Method is Not Found");
             }
         }
+
+        /// <summary>
+        /// UC7: Use Reflection to set the field value dynamically.
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="fieldName"></param>
+        /// <returns></returns>
+        /// <exception cref="MoodAnalyserCustomException"></exception>
+        public static string SetField(string message, string fieldName)
+        {
+            try
+            {
+                MoodAnalyser obj = (MoodAnalyser)MoodAnalyserReflector.CreateMoodAnalyserUsingDefaultConstructor("MoodAnalyserProblem.MoodAnalyser", "MoodAnalyser");
+                Type type = typeof(MoodAnalyser);
+                FieldInfo field = type.GetField(fieldName, BindingFlags.Public | BindingFlags.Instance);
+                if (message == null)
+                {
+                    throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.NULL_MESSAGE, "Message should not be null");
+                }
+                field.SetValue(obj, message);
+                return obj.Message;
+            }
+            catch (NullReferenceException)
+            {
+                throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.NO_SUCH_FIELD, "Field is not Found");
+            }
+        }
     }
 }

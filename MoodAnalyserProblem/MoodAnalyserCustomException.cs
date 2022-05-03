@@ -17,7 +17,8 @@ namespace MoodAnalyserProblem
             NULL_MESSAGE, 
             NO_SUCH_CLASS, 
             NO_SUCH_METHOD,
-            IMPROPER_MESSAGE
+            IMPROPER_MESSAGE,
+            NO_SUCH_FIELD
         }
 
         /// <summary>
