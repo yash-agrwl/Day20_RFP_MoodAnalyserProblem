@@ -120,5 +120,29 @@ namespace MoodAnalyserMSTest
                     Assert.AreEqual("Class Not Found", e.Message);
             }
         }
+
+        /// <summary>
+        /// TC 5.1: Given MoodAnalyser Class Name Should return MoodAnalyser Object.
+        /// </summary>
+        [TestMethod]
+        [DataRow("MoodAnalyserProblem.MoodAnalyser", "MoodAnalyser", "HAPPY")]
+        [DataRow("MoodAnalyserProblem.MoodAnalyser", "Mood", "HAPPY")]
+        [DataRow("MoodAnalyserProblem.Mood", "MoodAnalyser", "HAPPY")]
+        public void GivenMoodAnalyserClassName_ShouldReturnObject_UsingParameterizedConstructor(string className, string constructorName, string message)
+        {
+            object expected = new MoodAnalyser(message);
+            try
+            {
+                object obj = MoodAnalyserFactory.CreateMoodAnalyserUsingParameterizedConstructor(className, constructorName, message);
+                expected.Equals(obj);
+            }
+            catch (MoodAnalyserCustomException e)
+            {
+                if (e.Message == "Constructor is Not Found")
+                    Assert.AreEqual("Constructor is Not Found", e.Message);
+                else if (e.Message == "Class Not Found")
+                    Assert.AreEqual("Class Not Found", e.Message);
+            }
+        }
     }
 }

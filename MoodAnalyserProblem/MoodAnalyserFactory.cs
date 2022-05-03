@@ -52,7 +52,7 @@ namespace MoodAnalyserProblem
         public static object CreateMoodAnalyserUsingParameterizedConstructor(string className, string constructorName, string message)
         {
             Type type = typeof(MoodAnalyser);
-            //Type type = Type.GetType("MoodAnalyserProblem.MoodAnalyser");
+            //Type type = Type.GetType("MoodAnalyserProblem.MoodAnalyser"); // Alternate Statement.
 
             if (type.Name.Equals(className) || type.FullName.Equals(className))
             {
